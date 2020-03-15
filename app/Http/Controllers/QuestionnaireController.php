@@ -22,7 +22,7 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('home');
     }
 
     /**
@@ -32,7 +32,8 @@ class QuestionnaireController extends Controller
      */
     public function create()
     {
-        return view('questionnaires.create');
+        $questionnaire = new Questionnaire();
+        return view('questionnaires.create', compact('questionnaire'));
     }
 
     /**
@@ -44,8 +45,8 @@ class QuestionnaireController extends Controller
     public function store(StoreQuestionnaire $request)
     {
         $validated = $request->validated();
-        auth()->user()->questionnaires()->create($validated);
-        return redirect()->route('home');
+        $questionnaire = auth()->user()->questionnaires()->create($validated);
+        return redirect()->route('questionaires.show', $questionnaire->id);
     }
 
     /**
@@ -56,7 +57,7 @@ class QuestionnaireController extends Controller
      */
     public function show(Questionnaire $questionnaire)
     {
-        //
+        return view('questionnaires.show')->withQuestionnaire($questionnaire);
     }
 
     /**
@@ -67,7 +68,7 @@ class QuestionnaireController extends Controller
      */
     public function edit(Questionnaire $questionnaire)
     {
-        //
+        return view('questionnaires.edit')->withQuestionnaire($questionnaire);
     }
 
     /**
@@ -77,9 +78,11 @@ class QuestionnaireController extends Controller
      * @param  \App\Models\Questionnaire  $questionnaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questionnaire $questionnaire)
+    public function update(StoreQuestionnaire $request, Questionnaire $questionnaire)
     {
-        //
+        $validated = $request->validated();
+        $this->questionnaire->updateQ($questionnaire->id, $validated);
+        return redirect()->back();
     }
 
     /**

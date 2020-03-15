@@ -8,12 +8,13 @@
                 <div class="card-header">Create new Questionnaire</div>
 
                 <div class="card-body">
-                    <form action="{{route('questionnaires.store')}}" method="post">
+                    <form action="{{route('questionnaires.update', $questionnaire->id)}}" method="post">
                         @csrf
+                        @method('PATCH')
                         @include('questionnaires._form')
 
                         <div class="form-group">
-                            <button class="btn btn-primary">Create Questionnaire</button>
+                            <button class="btn btn-primary">Update Questionnaire</button>
                         </div>
                     </form>
                     

@@ -18,4 +18,9 @@ class Questionnaire extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function updateQ($id, $questionnaire)
+    {
+        return $this->findOrFail($id)->update($questionnaire);
+    }
 }

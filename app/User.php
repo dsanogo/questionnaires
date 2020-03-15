@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Questionnaire;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -39,6 +40,6 @@ class User extends Authenticatable
 
     public function questionnaires()
     {
-        return $this->hasMany('App\Models\Questionnaire');
+        return $this->hasMany(Questionnaire::class);
     }
 }

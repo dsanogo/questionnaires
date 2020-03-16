@@ -5,16 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Questionnaire</div>
+                <div class="card-header">Update Question</div>
 
                 <div class="card-body">
-                    <form action="{{route('questionnaires.update', $questionnaire->id)}}" method="post">
+                    <form action="{{route('questionnaires.updateQuestions', [$questionnaire->id, $question->id])}}" method="post">
                         @csrf
                         @method('PATCH')
-                        @include('questionnaires._form')
+                        @include('questionnaires.questions._form')
 
                         <div class="form-group">
-                            <button class="btn btn-primary">Update Questionnaire</button>
+                            <button class="btn btn-primary">Update Question</button>
                         </div>
                     </form>
                     

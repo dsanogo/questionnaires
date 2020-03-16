@@ -5,16 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Edit Questionnaire</div>
+            <div class="card-header">Create new Question for <strong>{{ $questionnaire->title}}</strong></div>
 
                 <div class="card-body">
-                    <form action="{{route('questionnaires.update', $questionnaire->id)}}" method="post">
+                    <form action="{{route('questionnaires.storeQuestion', $questionnaire->id)}}" method="post">
                         @csrf
-                        @method('PATCH')
-                        @include('questionnaires._form')
+                        @include('questionnaires.questions._form')
 
                         <div class="form-group">
-                            <button class="btn btn-primary">Update Questionnaire</button>
+                            <button class="btn btn-primary">Create Question</button>
                         </div>
                     </form>
                     

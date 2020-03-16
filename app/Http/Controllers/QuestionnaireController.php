@@ -46,7 +46,7 @@ class QuestionnaireController extends Controller
     {
         $validated = $request->validated();
         $questionnaire = auth()->user()->questionnaires()->create($validated);
-        return redirect()->route('questionaires.show', $questionnaire->id);
+        return redirect()->route('questionnaires.show', $questionnaire->id);
     }
 
     /**
@@ -57,6 +57,7 @@ class QuestionnaireController extends Controller
      */
     public function show(Questionnaire $questionnaire)
     {
+        $questionnaire->load('questions.answers');
         return view('questionnaires.show')->withQuestionnaire($questionnaire);
     }
 
@@ -82,7 +83,7 @@ class QuestionnaireController extends Controller
     {
         $validated = $request->validated();
         $this->questionnaire->updateQ($questionnaire->id, $validated);
-        return redirect()->back();
+        return redirect()->route('questionnaires.show', $questionnaire->id);
     }
 
     /**

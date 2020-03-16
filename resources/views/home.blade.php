@@ -14,16 +14,41 @@
                         </div>
                     @endif
 
-                    <div>
-                        @forelse ($questionnaires as $questionnaire)
-                            <h4 style="display: inline-block">{{$questionnaire->title}}</h4>
-                            <small>{{$questionnaire->purpose}}</small>
-                        @empty
-                            <p class="alert alert-info">No questionnaire Yet.</p>
-                        @endforelse
+                    <div class="text-center">
+                        <a href="{{route('questionnaires.create')}}" class="btn btn-dark my-3">Create new questionnaire</a>
                     </div>
+                </div>
+            </div>
 
-                    <a href="{{route('questionnaires.create')}}" class="btn btn-dark">Create new questionnaire</a>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4>My Questionnaires</h4>
+                </div>
+
+                <div class="card-body">
+                    <div>
+                        <ul class="list-group">
+                            @forelse ($questionnaires as $questionnaire)
+                            <li class="list-group-item list-group-flush">
+                                <h4 style="display: inline-block">
+                                        <a href="{{$questionnaire->path()}}">
+                                            {{$questionnaire->title}}
+                                        </a>
+                                    </h4>
+                                    <small>{{$questionnaire->purpose}}</small>
+
+                                    <div class="mt-2">
+                                        <small><strong>Share URL:</strong> {{$questionnaire->publicPath()}}</small>
+                                        <p>
+                                            <a href="{{$questionnaire->publicPath()}}" target="_blanc">Take now</a>
+                                        </p>
+                                    </div>
+                            </li>    
+                            @empty
+                                <p class="alert alert-info">No questionnaire Yet.</p>
+                            @endforelse
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

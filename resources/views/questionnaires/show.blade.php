@@ -31,8 +31,11 @@
                     <div class="card-body">
                         <ul class="list-group">
                             @forelse ($question->answers as $answer)
-                                <li class="list-group-flush list-group-item">
-                                    {{ $answer->answer }}
+                                <li class="list-group-flush list-group-item d-flex justify-content-between">
+                                    <div>{{ $answer->answer }}</div>
+                                    @if ($question->responses->count())
+                                        <div class="font-weight-bold">{{ intval($answer->responses->count() * 100 / $question->responses->count()) }}%</div>
+                                    @endif
                                 </li>
                             @empty
                                 <p>No Answers added</p>

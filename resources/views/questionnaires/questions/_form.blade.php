@@ -26,7 +26,7 @@
                         autocomplete="off" 
                         aria-describedby="choicesHelp" 
                         placeholder="Enter choice {{$index+1}}"
-                        value="{{ old("answers.$index.answer") ?? isset($answers[$index]) ? $answers[$index]['answer'] : ''}}"
+                        value="{{ old("answers.$index.answer") ? isset($answers[$index]) ? $answers[$index]['answer'] : old("answers.$index.answer") : old("answers.$index.answer") }}"
                     >
                     @error("answers." . $index . '.answer')
                         <span class="invalid-feedback" role="alert" style="display: block">

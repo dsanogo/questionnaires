@@ -12,4 +12,9 @@ class SurveyResponse extends Model
     {
         return $this->belongsTo(Survey::class);
     }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }

@@ -57,7 +57,7 @@ class QuestionnaireController extends Controller
      */
     public function show(Questionnaire $questionnaire)
     {
-        $questionnaire->load('questions.answers');
+        $questionnaire->load('questions.answers.responses');
         return view('questionnaires.show')->withQuestionnaire($questionnaire);
     }
 
@@ -94,6 +94,12 @@ class QuestionnaireController extends Controller
      */
     public function destroy(Questionnaire $questionnaire)
     {
-        //
+        $questionnaire->load('questions.answers');
+        foreach ($questionnaire->questions as $key => $question) {
+            $question->answers()->delete();
+        }
+        $questionnaire->questions()->delete();
+        $questionnaire->delete();
+        return redirect()->back();
     }
 }

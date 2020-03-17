@@ -83,6 +83,7 @@ class QuestionController extends Controller
      */
     public function edit(Questionnaire $questionnaire, Question $question)
     {
+        $question->load('answers');
         $answers = $question->answers->toArray();
         return view('questionnaires.questions.edit')->withQuestion($question)->withQuestionnaire($questionnaire)->withAnswers($answers);
     }
@@ -129,10 +130,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         $question->load('answers');
-        foreach ($question->answers as $answer) {
-            $answer->delete();
-        }
-
+        $question->answers()->delete();
         $question->delete();
 
         return redirect()->back();

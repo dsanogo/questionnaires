@@ -32,3 +32,5 @@ Route::delete('questions/{question}', 'QuestionController@destroy')->name('quest
 Route::get('pay', 'PayOrderController@store');
 Route::get('channels', 'ChannelController@index');
 Route::get('channels/posts/create', 'PostController@create');
+
+Route::get('customers', 'CustomerController@index');

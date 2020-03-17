@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Image;
 use App\Models\Questionnaire;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,5 +42,10 @@ class User extends Authenticatable
     public function questionnaires()
     {
         return $this->hasMany(Questionnaire::class);
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

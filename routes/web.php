@@ -28,3 +28,7 @@ Route::patch('questionnaires/{questionnaire}/questions/{question}', 'QuestionCon
 Route::get('surveys/{questionnaire}-{slug}', 'SurveyController@show')->name('surveys.take');
 Route::post('surveys/{questionnaire}-{slug}', 'SurveyController@store')->name('surveys.store');
 Route::delete('questions/{question}', 'QuestionController@destroy')->name('questions.destroy');
+
+Route::get('pay', 'PayOrderController@store');
+Route::get('channels', 'ChannelController@index');
+Route::get('channels/posts/create', 'PostController@create');

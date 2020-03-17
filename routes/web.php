@@ -33,4 +33,5 @@ Route::get('pay', 'PayOrderController@store');
 Route::get('channels', 'ChannelController@index');
 Route::get('channels/posts/create', 'PostController@create');
 
-Route::get('customers', 'CustomerController@index');
+Route::get('customers', 'CustomerController@index')->name('customers.index');
+Route::get('customers/{customerId}', 'CustomerController@show')->name('customers.show');

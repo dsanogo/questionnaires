@@ -32,4 +32,10 @@ class CustomerController extends Controller
 
         dd($updated);
     }
+
+    public function getCustomers()
+    {
+        $customers = $this->customerRepository->allCustomers();
+        return $customers;
+    }
 }

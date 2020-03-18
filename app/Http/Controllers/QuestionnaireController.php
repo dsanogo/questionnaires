@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewQuestionnaireCreatedEvent;
 use App\Http\Requests\StoreQuestionnaire;
+use App\Mail\NewQuestionnaireMail;
 use App\Models\Questionnaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class QuestionnaireController extends Controller
 {
@@ -46,6 +49,9 @@ class QuestionnaireController extends Controller
     {
         $validated = $request->validated();
         $questionnaire = auth()->user()->questionnaires()->create($validated);
+
+        event(new NewQuestionnaireCreatedEvent($questionnaire));
+
         return redirect()->route('questionnaires.show', $questionnaire->id);
     }
 

@@ -23,6 +23,7 @@
             <div class="card mt-4">
                 <div class="card-header">
                     <h4>My Questionnaires</h4>
+                    <example-component message="Hello laravel"></example-component>
                 </div>
 
                 <div class="card-body">
